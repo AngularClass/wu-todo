@@ -11,9 +11,18 @@ import { UniversalModule, isBrowser, isNode } from 'angular2-universal/node'; //
 import { SharedModule } from './shared/shared.module';
 import { HomeModule } from './home/home.module';
 import { AboutModule } from './about/about.module';
-import { AppComponent } from './app.component';
+// import { AppComponent } from './app.component';
+import { AppComponent } from '../funtimes/src/app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CacheService } from './shared/cache.service';
+// import { WuModule } from '../funtimes/src/main';
+
+import { HeaderComponent } from '../funtimes/src/app-header.component';
+import { ToDoCardComponent } from '../funtimes/src/todo-card.component';
+import { WuInputComponent } from '../funtimes/src/wu-input.component';
+import { ToDoService } from '../funtimes/src/todo.service';
+
+
 
 import * as LRU from 'modern-lru';
 
@@ -24,18 +33,24 @@ export function getLRU(lru?: any) {
 
 @NgModule({
   bootstrap: [ AppComponent ],
-  declarations: [ AppComponent ],
+  declarations: [ 
+    AppComponent, 
+    HeaderComponent,
+    ToDoCardComponent,
+    WuInputComponent
+  ],
   imports: [
     UniversalModule, // NodeModule, NodeHttpModule, and NodeJsonpModule are included
     FormsModule,
-
     SharedModule,
-    HomeModule,
-    AboutModule,
+    // WuModule,
+    // HomeModule,
+    // AboutModule,
 
-    AppRoutingModule
+    // AppRoutingModule
   ],
   providers: [
+    ToDoService,
     { provide: 'isBrowser', useValue: isBrowser },
     { provide: 'isNode', useValue: isNode },
 
